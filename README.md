@@ -117,13 +117,15 @@ Search NYT articles by query, date range, and other criteria.
 
 **Returns:** Formatted response with articles array containing headline, snippet, web_url, and pub_date
 
-### 2. get_news_wire
+### 2. get_latest_news
 Get the latest news items from the NYT news wire.
 
 **Parameters:**
 - `limit` (int, optional): Number of items to return (default: 20)
 - `offset` (int, optional): Pagination offset (default: 0)
 - `source` (string, optional): "nyt" or "inyt" (default: "nyt")
+- `section` (string, optional): relevant section, e.g. "u.s.", "technology" (default: "all")
+  - See `nyt://reference/sections` resource for available sections
 
 **Returns:** Formatted response with news_items array
 
@@ -208,7 +210,7 @@ This opens the MCP Inspector for interactive testing.
 
 ## API Rate Limits
 
-The NYT API has rate limits (approximately 10 requests/minute, 4000 requests/day). Use the `nyt://reference/api-limits` resource to check current limits.
+The NYT API has rate limits (approximately 5 requests/minute, 500 requests/day maximum). Use the `nyt://reference/api-limits` resource to check current limits.
 
 ## Contributing
 

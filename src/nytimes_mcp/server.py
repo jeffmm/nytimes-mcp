@@ -34,7 +34,7 @@ async def search_articles(
 
 
 @mcp.tool()
-async def get_news_wire(
+async def get_latest_news(
     limit: int = 20,
     offset: int = 0,
     source: tools.NewsSource = "nyt",
@@ -47,10 +47,12 @@ async def get_news_wire(
         limit: Number of items to return (default: 20)
         offset: Pagination offset (default: 0)
         source: News source - "nyt" or "inyt" (default: "nyt")
+        section: News section (default: "all"). e.g. "u.s." or "technology". Use
+            the 'nyt://reference/sections' resource for available section names.
 
     Returns:
         Formatted response with news_items array containing title, abstract, url, section,
-        subsection, published_date, and byline
+            subsection, published_date, and byline
     """
     return await tools.get_news_wire(limit, offset, source, section)
 
