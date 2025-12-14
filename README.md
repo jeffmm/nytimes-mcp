@@ -4,7 +4,7 @@ A FastMCP-based Model Context Protocol (MCP) server that provides access to the 
 
 ## Overview
 
-This MCP server provides 6 specialized tools for accessing various New York Times APIs:
+This MCP server provides 5 specialized tools for accessing various New York Times APIs:
 - **Article Search** - Search the NYT article archive
 - **News Wire** - Real-time news feed
 - **Most Popular** - Most viewed/shared/emailed articles
