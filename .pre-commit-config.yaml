@@ -1,0 +1,34 @@
+repos:
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    # uv version.
+    rev: 0.7.11
+    hooks:
+      - id: uv-lock
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.14.9
+    hooks:
+      # Run the linter.
+      - id: ruff-check
+        types_or: [python]
+        args: ["--select", "I", "--fix"]
+      # Run the formatter.
+      - id: ruff-format
+        types_or: [python]
+  - repo: local
+    hooks:
+      - id: ty-check
+        name: ty
+        description: This hook runs ty static type checker using local pyproject.toml configuration
+        entry: uv run ty check .
+        language: python
+        files: ""
+        pass_filenames: false
+        args: []
