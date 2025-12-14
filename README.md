@@ -24,9 +24,34 @@ This MCP server provides 6 specialized tools for accessing various New York Time
 
 - Python 3.13+
 - NYT API Key (get one at [NYT Developer Portal](https://developer.nytimes.com/))
-- uv or pip for package management
+- uv for package management
+    - Note: if using pip, you should do yourself a favor and do `pip install uv`, then feel free to follow the rest of this guide.
 
-## Quick Start
+## Quickest start (Agent MCP settings)
+
+If using Claude Desktop, Claude Code, Gemini CLI, Qwen Code, etc, simply add the following to your MCP settings JSON file, replacing `your_api_key_here` with your actual NYT API key.
+
+```json
+{
+  "mcpServers": {
+    "nytimes": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/jeffmm/nytimes-mcp.git",
+        "nytimes-mcp"
+      ],
+      "env": {
+        "NYT_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+Your agent tool should now be able to access the NYTimes MCP server tools.
+
+## Quick Start (manual)
 
 ### 1. Clone and Install
 
@@ -35,16 +60,10 @@ git clone https://github.com/your-username/nytimes-mcp.git
 cd nytimes-mcp
 ```
 
-### 2. Install with uv (recommended)
+### 2. Install with uv
 
 ```bash
-ux tool install .
-```
-
-Or with pip:
-
-```bash
-pip install -e .
+uv tool install .
 ```
 
 ### 3. Configure API Key
@@ -75,12 +94,6 @@ This starts the MCP Inspector UI for testing tools interactively.
 
 ```bash
 uvx nytimes-mcp
-```
-
-Or use the FastMCP run command:
-
-```bash
-fastmcp run src/nytimes_mcp/server.py:mcp
 ```
 
 ## Project Structure
@@ -168,9 +181,25 @@ Resources provide reference data that can be accessed by MCP clients:
 
 ## Using with MCP Clients
 
-### Claude Desktop
+### Claude Desktop (or most other CLI tools)
 
-Add to your Claude Desktop MCP configuration:
+Add to your MCP configuration JSON:
+
+```json
+{
+  "mcpServers": {
+    "nytimes": {
+      "command": "uvx",
+      "args": ["nytimes-mcp"],
+      "env": {
+        "NYT_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+Or if installed locally
 
 ```json
 {
